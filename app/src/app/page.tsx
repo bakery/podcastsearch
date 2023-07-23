@@ -19,8 +19,14 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
           <SearchBar
             onChange={async (query) => {
-              const rs = await search(query);
-              setResults(rs);
+              // const rs = await search(query);
+              // setResults(rs);
+              const response = await fetch("/api", {
+                method: "POST",
+                body: JSON.stringify({}),
+              });
+
+              setResults(await response.json());
             }}
           />
           <div className="pt-10">

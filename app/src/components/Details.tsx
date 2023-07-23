@@ -64,7 +64,7 @@ export const Details = ({
           id={result.id}
           params={`start=${result.start}&autoplay=1`}
           poster="hqdefault"
-          title={result.text}
+          title="Youtube embed"
         />
         <p>{result.text}</p>
       </div>

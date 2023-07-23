@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { ChromaClient, TransformersEmbeddingFunction } from "chromadb";
-// import "@xenova/transformers";
+import "@xenova/transformers";
 import { SearchResult } from "@/helpers";
 
 const client = new ChromaClient({

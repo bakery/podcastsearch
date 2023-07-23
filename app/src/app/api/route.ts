@@ -11,6 +11,8 @@ const transcriptsCollectionParams = {
   embeddingFunction: new TransformersEmbeddingFunction(),
 };
 
+export const runtime = "edge";
+
 export async function POST() {
   const query = "marketing";
   let transcripts = await client.getCollection(transcriptsCollectionParams);

@@ -1,8 +1,45 @@
 "use server";
 
-import { ChromaClient, TransformersEmbeddingFunction } from "chromadb";
-// import "@xenova/transformers";
+import { pipeline, env } from "@xenova/transformers";
+import { ChromaClient } from "chromadb";
 import { SearchResult } from "@/helpers";
+
+class TransformersEmbeddingFunction {
+  private pipelinePromise: Promise<any> | null;
+
+  constructor({
+    model = "Xenova/all-MiniLM-L6-v2",
+    revision = "main",
+    quantized = false,
+    progress_callback = undefined,
+  }: {
+    model?: string;
+    revision?: string;
+    quantized?: boolean;
+    progress_callback?: Function | undefined;
+  } = {}) {
+    // Store a promise that resolves to the pipeline
+    this.pipelinePromise = new Promise(async (resolve, reject) => {
+      try {
+        resolve(
+          await pipeline("feature-extraction", model, {
+            quantized,
+            revision,
+            progress_callback,
+          })
+        );
+      } catch (e) {
+        reject(e);
+      }
+    });
+  }
+
+  public async generate(texts: string[]): Promise<number[][]> {
+    let pipe = await this.pipelinePromise;
+    let output = await pipe(texts, { pooling: "mean", normalize: true });
+    return output.tolist();
+  }
+}
 
 const client = new ChromaClient({
   path: process.env.CHROMA_SERVER_URL,

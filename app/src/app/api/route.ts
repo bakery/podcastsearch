@@ -8,7 +8,7 @@ import { SearchResult } from "@/helpers";
 env.allowLocalModels = false;
 // export const runtime = "edge";
 
-export class TransformersEmbeddingFunction {
+class TransformersEmbeddingFunction {
   private pipelinePromise: Promise<any> | null;
 
   /**

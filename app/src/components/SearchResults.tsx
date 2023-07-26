@@ -38,10 +38,7 @@ export const SearchResults = ({
   return (
     <div className="flex min-h-[calc(100vh-var(--navbar-height)-var(--filterbar-height)-12px)] min-w-0 flex-shrink flex-grow flex-col">
       <div className="pb-24">
-        <div
-          className="grid content-start [--column-gap:12px] min-720:[--column-gap:24px] gap-x-[--column-gap] gap-y-20 min-720:gap-y-40 [--min-column-width:169px] min-720:[--min-column-width:208px] min-840:[--min-column-width:243px] [--max-column-count:7] [--total-gap-width:calc((var(--max-column-count)-1)*var(--column-gap))] [--max-column-width:calc((100%-var(--total-gap-width))/var(--max-column-count))] grid-cols-[repeat(auto-fill,minmax(max(var(--min-column-width),var(--max-column-width)),1fr))]"
-          // style="padding-top: 0px; height: 21019.7px;"
-        >
+        <div className="grid content-start [--column-gap:12px] min-720:[--column-gap:24px] gap-x-[--column-gap] gap-y-20 min-720:gap-y-40 [--min-column-width:169px] min-720:[--min-column-width:208px] min-840:[--min-column-width:243px] [--max-column-count:7] [--total-gap-width:calc((var(--max-column-count)-1)*var(--column-gap))] [--max-column-width:calc((100%-var(--total-gap-width))/var(--max-column-count))] grid-cols-[repeat(auto-fill,minmax(max(var(--min-column-width),var(--max-column-width)),1fr))]">
           {results.map((r, i) => (
             <div key={i} className="flex flex-col gap-y-16">
               <SearchResult onSelect={onSelect} result={r} />

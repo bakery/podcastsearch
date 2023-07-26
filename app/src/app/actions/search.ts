@@ -49,16 +49,6 @@ const transcriptsCollectionParams = {
   embeddingFunction: new TransformersEmbeddingFunction(),
 };
 
-export async function initChroma() {
-  let transcripts = await client.getCollection(transcriptsCollectionParams);
-
-  console.log(">>>>>>>>>>>> got transcripts", transcripts);
-
-  return {
-    transcripts: await transcripts.count(),
-  };
-}
-
 export async function search(query: string) {
   let transcripts = await client.getCollection(transcriptsCollectionParams);
   const r = await transcripts.query({

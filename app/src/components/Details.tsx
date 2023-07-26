@@ -13,7 +13,6 @@ export const Details = ({
   onClose: () => void;
   result: SearchResult | null;
 }) => {
-  console.log("result", result);
   return result ? (
     <article
       className="grid h-full w-full overflow-hidden bg-bg-primary grid-rows-[min-content_1fr]"

@@ -7,8 +7,10 @@ import { SearchResult } from "@/helpers";
 import { SearchBar } from "@/components/SearchBar";
 import { SearchResults } from "@/components/SearchResults";
 import { Details } from "@/components/Details";
+import { Loader } from "@/components/Loader";
 
 export default function Home() {
+  const [loading, setLoading] = useState<boolean>(false);
   const [selectedSearchResult, setSelectedSearchResult] =
     useState<SearchResult | null>(null);
   const [results, setResults] = useState<SearchResult[]>([]);
@@ -19,21 +21,24 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
           <SearchBar
             onChange={async (query) => {
-              // const response = await fetch("/api", {
-              //   method: "POST",
-              //   body: JSON.stringify({ query }),
-              // });
-              const results = await search(query);
-              setResults(results);
+              setLoading(true);
+              setResults(await search(query));
+              setLoading(false);
             }}
           />
           <div className="pt-10">
-            <SearchResults
-              onSelect={(result) => {
-                setSelectedSearchResult(result);
-              }}
-              results={results}
-            />
+            {loading ? (
+              <center>
+                <Loader />
+              </center>
+            ) : (
+              <SearchResults
+                onSelect={(result) => {
+                  setSelectedSearchResult(result);
+                }}
+                results={results}
+              />
+            )}
           </div>
         </div>
       </main>

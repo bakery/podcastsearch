@@ -65,7 +65,7 @@ export const Details = ({
           poster="hqdefault"
           title="Youtube embed"
         />
-        <p>{result.text}</p>
+        {/* <p>{result.text}</p> */}
       </div>
     </article>
   ) : null;

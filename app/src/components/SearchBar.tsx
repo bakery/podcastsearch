@@ -22,8 +22,10 @@ export const SearchBar = ({
             placeholder="Search"
             type="search"
             name="search"
-            onChange={(e) => {
-              onChange(e.currentTarget.value);
+            onKeyDown={(event) => {
+              if (event.key === "Enter") {
+                onChange(event.currentTarget.value);
+              }
             }}
           />
         </div>
